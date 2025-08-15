@@ -9,8 +9,9 @@
   <body>
     <form action="" novalidate>
       <label for="mail">Enter an email adress: </label>
-      <input type="email" id="mail" name="mail" />
+      <input type="email" id="mail" name="mail" required />
       <span class="error"></span>
+
       <label for="country">Pick your country: </label>
       <select id="country" name="country">
         <option value="Afghanistan">Afghanistan</option>
@@ -210,15 +211,19 @@
         <option value="Zambia">Zambia</option>
         <option value="Zimbabwe">Zimbabwe</option>
       </select>
+
       <label for="postcode">Enter your postal code: </label>
-      <input type="text" id="postcode" />
+      <input type="text" id="postcode" required />
+      <span class="error"></span>
 
       <label for="password">Enter your password: </label>
-      <input type="password" id="password" />
+      <input type="password" id="password" required minlength="8" />
+      <span class="error"></span>
 
       <label for="password-conf">Confirm your password: </label>
-      <input type="password-conf" id="password-conf" />
+      <input type="password-conf" id="password-conf" required />
       <span class="error"></span>
+
       <button id="submit">Submit</button>
     </form>
     <script src="script.js"></script>
