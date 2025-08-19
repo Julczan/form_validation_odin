@@ -5,37 +5,58 @@
 //password confirm
 //validation on input
 //error onsubmit
-
 //show error message
-const email = document.querySelector("#mail");
-const emailError = document.querySelector("#mail + span.error");
-const password = document.querySelector("#password");
-const passwordError = document.querySelector("#password + span.error");
 
-email.addEventListener("input", () => {
-  if (email.validity.valid) {
-    emailError.textContent = "";
-    emailError.className = "error";
-  } else {
-    showError(emailError);
-  }
+// when the user clicks away or clicks the submit button the form should be validated
+//the message should be shown when clicking away
+
+// const email = document.querySelector("#mail");
+const password = document.querySelector("#password").value;
+const passwordConf = document.querySelector("#password-conf").value;
+
+const form = document.querySelector("form");
+
+const inputFields = document.querySelectorAll("input");
+
+inputFields.forEach((field) =>
+  field.addEventListener("focusout", () => {
+    if (field.validity.valid) {
+      clearError(field);
+    } else {
+      showError(field);
+    }
+  })
+);
+
+form.addEventListener("submit", (e) => {
+  inputFields.forEach((field) => {
+    if (!field.validity.valid) {
+      showError(field);
+    }
+  });
+  e.preventDefault();
 });
 
-password.addEventListener("input", () => {
-  if (password.validity.valid) {
-    passwordError.textContent = "";
-    passwordError.className = "error";
-  } else {
-    showError(passwordError);
-  }
-});
+function showError(field) {
+  const error = document.querySelector(`#${field.id} + span.error`);
 
-function showError(error) {
-  if (email.validity.typeMismatch) {
-    error.textContent = "Entered value needs to be an email address.";
-    error.className = "error active";
+  switch (error.id) {
+    case "mail-err":
+      error.textContent = "Email not valid";
+      break;
+    case "postcode-err":
+      error.textContent = "Postcode not valid";
+      break;
+    case "password-err":
+      error.textContent = "Password should be at least 8 characters long";
+      break;
   }
-  if (password.validity.tooShort) {
-    error.textContent = `Password should be at least 8 characters. You entered ${password.value.length}`;
-  }
+
+  error.className = "error active";
+}
+
+function clearError(field) {
+  const error = document.querySelector(`#${field.id} + span.error`);
+  error.textContent = "";
+  error.className = "error";
 }

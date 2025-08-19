@@ -2,6 +2,9 @@ body {
   display: flex;
   justify-content: center;
   background-color: beige;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 form {
@@ -14,6 +17,7 @@ form {
 input,
 select {
   margin-top: 5px;
+  font-size: 1.5rem;
 }
 
 .error {
@@ -38,4 +42,9 @@ input:invalid {
 
 input:focus:invalid {
   outline: none;
+}
+
+input:valid {
+  border-color: green;
+  background-color: rgba(60, 255, 0, 0.676);
 }
