@@ -10,10 +10,10 @@
 // when the user clicks away or clicks the submit button the form should be validated
 //the message should be shown when clicking away
 
-// const email = document.querySelector("#mail");
 const password = document.querySelector("#password");
 const passwordConf = document.querySelector("#password-conf");
 const passwordConfError = document.querySelector("#password-conf + span.error");
+const select = document.querySelector("select");
 
 const form = document.querySelector("form");
 
@@ -29,6 +29,14 @@ inputFields.forEach((field) =>
   })
 );
 
+select.addEventListener("focusout", () => {
+  if (select.value === "") {
+    showError(select);
+  } else {
+    clearError(select);
+  }
+});
+
 passwordConf.addEventListener("focusout", () => {
   if (checkIfPassMatch()) {
     clearError(passwordConf);
@@ -39,6 +47,10 @@ passwordConf.addEventListener("focusout", () => {
 
 form.addEventListener("submit", (e) => {
   inputFields.forEach((field) => {
+    if (select.value === "") {
+      showError(select);
+      e.preventDefault();
+    }
     if (!field.validity.valid) {
       showError(field);
       e.preventDefault();
@@ -58,6 +70,9 @@ function showError(field) {
       break;
     case "postcode-err":
       error.textContent = "Postcode not valid";
+      break;
+    case "select-err":
+      error.textContent = "You need to select a Country";
       break;
     case "password-err":
       error.textContent = "Password should be at least 8 characters long";

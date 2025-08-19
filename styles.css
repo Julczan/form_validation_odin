@@ -41,10 +41,6 @@ button {
   padding: 0.3em;
 }
 
-input:invalid {
-  background-color: #ffdddd;
-}
-
 input:focus:invalid {
   border-color: #990000;
   background-color: #ffdddd;
