@@ -10,14 +10,20 @@ body {
 form {
   display: flex;
   flex-direction: column;
-  width: 20vw;
-  font-size: 1.5rem;
+  width: 30vw;
+  font-size: 2rem;
 }
 
 input,
 select {
   margin-top: 5px;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  background-color: #fff;
+  padding: 24px 10px 12px;
+}
+button {
+  margin-top: 20px;
+  padding: 24px 10px 12px;
 }
 
 .error {
@@ -36,11 +42,26 @@ select {
 }
 
 input:invalid {
+  background-color: #ffdddd;
+}
+
+input:focus:invalid {
   border-color: #990000;
   background-color: #ffdddd;
 }
 
 input:valid {
-  border-color: green;
-  background-color: rgba(60, 255, 0, 0.676);
+  background-color: rgba(139, 195, 74, 0.25);
+}
+input:focus {
+  background-color: #fff;
+}
+
+html,
+button,
+input,
+select,
+textarea {
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  color: #666;
 }

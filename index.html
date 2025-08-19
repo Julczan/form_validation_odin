@@ -9,7 +9,7 @@
   <body>
     <form action="" novalidate>
       <label for="mail">Enter an email adress: </label>
-      <input type="email" id="mail" name="mail" required />
+      <input type="email" id="mail" name="mail" placeholder="Email*" required />
       <span class="error" id="mail-err"></span>
 
       <label for="country">Pick your country: </label>
@@ -215,15 +215,27 @@
       <span class="error" id="select-err"></span>
 
       <label for="postcode">Enter your postal code: </label>
-      <input type="text" id="postcode" required />
+      <input type="text" id="postcode" placeholder="Postcode*" required />
       <span class="error" id="postcode-err"></span>
 
       <label for="password">Enter your password: </label>
-      <input type="password" id="password" required minlength="8" />
+      <input
+        type="password"
+        id="password"
+        placeholder="Password*"
+        required
+        minlength="8"
+      />
       <span class="error" id="password-err"></span>
 
       <label for="password-conf">Confirm your password: </label>
-      <input type="password" id="password-conf" required minlength="8" />
+      <input
+        type="password"
+        id="password-conf"
+        placeholder="Password confirm*"
+        required
+        minlength="8"
+      />
       <span class="error" id="password-conf-err"></span>
 
       <button id="submit">Submit</button>
