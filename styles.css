@@ -40,10 +40,6 @@ input:invalid {
   background-color: #ffdddd;
 }
 
-input:focus:invalid {
-  outline: none;
-}
-
 input:valid {
   border-color: green;
   background-color: rgba(60, 255, 0, 0.676);

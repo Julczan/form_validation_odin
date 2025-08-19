@@ -11,8 +11,9 @@
 //the message should be shown when clicking away
 
 // const email = document.querySelector("#mail");
-const password = document.querySelector("#password").value;
-const passwordConf = document.querySelector("#password-conf").value;
+const password = document.querySelector("#password");
+const passwordConf = document.querySelector("#password-conf");
+const passwordConfError = document.querySelector("#password-conf + span.error");
 
 const form = document.querySelector("form");
 
@@ -28,13 +29,24 @@ inputFields.forEach((field) =>
   })
 );
 
+passwordConf.addEventListener("focusout", () => {
+  if (checkIfPassMatch()) {
+    clearError(passwordConf);
+  } else {
+    showError(passwordConf);
+  }
+});
+
 form.addEventListener("submit", (e) => {
   inputFields.forEach((field) => {
     if (!field.validity.valid) {
       showError(field);
+      e.preventDefault();
+    } else if (!checkIfPassMatch()) {
+      showError(passwordConf);
+      e.preventDefault();
     }
   });
-  e.preventDefault();
 });
 
 function showError(field) {
@@ -50,6 +62,9 @@ function showError(field) {
     case "password-err":
       error.textContent = "Password should be at least 8 characters long";
       break;
+    case "password-conf-err":
+      error.textContent = "Passwords don't match";
+      break;
   }
 
   error.className = "error active";
@@ -59,4 +74,12 @@ function clearError(field) {
   const error = document.querySelector(`#${field.id} + span.error`);
   error.textContent = "";
   error.className = "error";
+}
+
+function checkIfPassMatch() {
+  if (password.value === passwordConf.value) {
+    return true;
+  } else {
+    return false;
+  }
 }
